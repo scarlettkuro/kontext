@@ -8,17 +8,21 @@
 
 </div>
 <script>
+var tree;
 function go(id) {
-	$.getJSON( "test.json", function(data) {
+	if (id[0]=="@") { tree = id.substring(1); id = 'init'; }
+	
+	$.getJSON( tree + ".json", function(data) {
 			val = eval("data." + id);
 			val = val.replace(/\[/g,"<span onclick = \"javascript:go(");
 			val = val.replace(/\]/g,")\">");
 			val = val.replace(/\#/g,"</span>");
+			//alert(val);
 			$("#text").html(val);
 		}
 	);
 }
-go('init');
+go('@test');
 </script>
 </body>
 </html>
