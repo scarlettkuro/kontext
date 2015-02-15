@@ -1,0 +1,28 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="game.css">
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+</head>
+<body>
+<div id="text">
+
+</div>
+<script>
+function comeon(id) {
+$.getJSON( "test.json", function( data ) {
+
+	$.each( data, function( key, val ) {
+		if (key==id) {
+				val = val.replace(/\[/g,"<span onclick = \"javascript:comeon(");
+				val = val.replace(/\]/g,")\">");
+				val = val.replace(/\#/g,"</a>");
+				$("#text").html(val);
+			}
+	});
+	}
+	
+);}
+comeon('init');
+</script>
+</body>
+</html>
